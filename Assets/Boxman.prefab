@@ -24,9 +24,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 445678}
   - 114: {fileID: 11414512}
-  - 50: {fileID: 5017772}
   - 61: {fileID: 6157766}
   - 212: {fileID: 21210700}
+  - 114: {fileID: 11490198}
   m_Layer: 0
   m_Name: Boxman
   m_TagString: Player
@@ -72,7 +72,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalPosition: {x: 0, y: -4.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 495192}
@@ -125,23 +125,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!50 &5017772
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110940}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 3
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &6157766
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -153,9 +136,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.048400447, y: -0.005707741}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.8}
+  m_Size: {x: 0.9497628, y: 1.9285815}
 --- !u!81 &8136462
 AudioListener:
   m_ObjectHideFlags: 1
@@ -181,16 +164,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c45ca864ca0423b9418b434ccc8dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpHeight: 4
+  timeToJumpApex: 0.4
+  moveSpeed: 10
   facingRight: 1
-  jump: 0
-  moveForce: 500
-  maxSpeed: 7
-  jumpForce: 70
-  groundCheck: {fileID: 495192}
-  groundCheckRadius: 0.5
-  whatIsGround:
+--- !u!114 &11490198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad73e56b1904c403eb16cac6ed13aa30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMask:
     serializedVersion: 2
     m_Bits: 256
+  horizontalRayCount: 4
+  verticalRayCount: 4
 --- !u!124 &12419348
 Behaviour:
   m_ObjectHideFlags: 1

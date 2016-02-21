@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof (Controller2D))]
 public class Player : MonoBehaviour {
 
 	public float jumpHeight = 4;
 	public float timeToJumpApex = .4f;
-	float accelerationTimeAirborne = .2f;
+	float accelerationTimeAirborne = .25f;
 	float accelerationTimeGrounded = .1f;
-	float moveSpeed = 6;
+	public float moveSpeed = 8;
+	[HideInInspector] public bool facingRight = true;
 
 	float gravity;
 	float jumpVelocity;
@@ -41,5 +43,26 @@ public class Player : MonoBehaviour {
 		velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime);
+	}
+
+	void FixedUpdate() {
+		if (Input.GetButtonDown ("Restart") || Input.GetButtonDown ("C Restart")) {
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+		}
+
+		float horiz = Input.GetAxis ("Horizontal");
+
+		if (horiz > 0 && !facingRight)
+			Flip ();
+		else if (horiz < 0 && facingRight)
+			Flip ();
+	}
+
+	void Flip()
+	{
+		facingRight = !facingRight;
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
 	}
 }
